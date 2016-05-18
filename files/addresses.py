@@ -3,6 +3,8 @@ from os.path import join
 
 
 class FilesModel:
+    """ This class orders sounds according to need. """
+
     def __init__(self, base_dir, *args):
         self.base_dir = base_dir
         self._filenames = []
@@ -11,6 +13,7 @@ class FilesModel:
 
     @property
     def filenames(self) -> dict:
+        """ Getter """
 
         if self._filenames:
             return self._filenames
@@ -22,6 +25,7 @@ class FilesModel:
 
     @property
     def hits(self):
+        """ Getter """
 
         if self._hits:
             return self._hits
@@ -32,6 +36,7 @@ class FilesModel:
 
     @property
     def beats(self):
+        """ Getter """
 
         if self._beats:
             return self._beats
