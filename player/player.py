@@ -15,24 +15,24 @@ class Player:
         self.hits = self.fm.hits
         self.beat = self.fm.beats
         self.rounds = 5
-        self.sounds = []
+        self.sounds = [Sound(choice(self.hits), self.metre) for _ in range(self.rounds)]
 
     def main(self):
         beat = self.beats()
-        for _ in range(self.rounds):
-            self.baseline(choice(self.hits))
+        for s in self.sounds:
+            self.baseline(s)
         beat.terminate()
         sleep(1)
 
     def baseline(self, filename):
-        bass = Sound(filename, self.metre)
-        bass.setup()
         start = time()
+        bass = filename #Sound(filename, self.metre)
+        bass.setup()
         for _ in range(16):
             bass.play()
             sleep(self.metre/2)
-        print(time()-start, self.metre*8)
         bass.terminate()
+        print(time()-start)
 
     def beats(self):
         beat = Sound(choice(self.beat), self.metre)

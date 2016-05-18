@@ -51,9 +51,8 @@ class Sound:
         )
         while q.empty():
             stream.write(self.data)
-        stream.close()
-        del stream
         p.terminate()
+        stream.close()
 
     def throw_process(self, q):
         import sounddevice
@@ -80,7 +79,6 @@ class Sound:
     def terminate(self):
         for q in self.qs:
             q.put(False)
-        sleep(0.5)
         for p in self.processes_pointers:
             p.terminate()
             p.join()
